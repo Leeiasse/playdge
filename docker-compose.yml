@@ -1,0 +1,26 @@
+name: playdge
+
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: playdge_postgres
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: playdge
+    ports:
+      - "5435:5432"
+    volumes:
+      - playdge_postgres_data:/var/lib/postgresql/data
+    networks:
+      - playdge
+    labels:
+      - dev.orbstack.domains=postgres.playdge.orb.local
+
+volumes:
+  playdge_postgres_data:
+
+
+networks:
+  playdge:
+    name: playdge
